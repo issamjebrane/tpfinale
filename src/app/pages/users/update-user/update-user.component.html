@@ -1,0 +1,29 @@
+<div class="content">
+    <h4>update User</h4>
+    <form [formGroup]="updateForm" (submit)="updateUser()" class="row g-3">
+        <div>
+            <label for="firstName" class="form-label">First Name</label>
+            <!-- formcontrolname only -->
+            <input type="text" class="form-control" name="first_name" id="first_name" formControlName="first_name" [value]="firstName">
+        </div>
+        <div>
+            <label for="lastName" class="form-label">lastName</label>
+            <input type="text" class="form-control"  name="last_name" formControlName="last_name" [value]="lastName">
+        </div>
+        <div>
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control"  name="email" formControlName="email">
+        </div>
+        <div>
+            <label for="job" class="form-label">job</label>
+            <input type="text" class="form-control"  name="job" formControlName="job" placeholder="optional">
+        </div>
+        <div>
+            <label for="phone" class="form-label">phone</label>
+            <input type="number" class="form-control"  name="phone" formControlName="phone" placeholder="optional">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" [disabled]="!updateForm.valid">submit</button>
+          </div>
+    </form>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
+import { first, lastValueFrom } from 'rxjs';
 import { UsersService } from 'src/app/services/users.service';
 import { UserType } from 'src/app/types/users.type';
 
@@ -15,7 +16,7 @@ export class ListUsersComponent implements OnInit, OnDestroy {
   public users: UserType[] = [];
   public totalPages = 1;
 
-  constructor(public usersService: UsersService) {}
+  constructor(public usersService: UsersService,private router:Router) {}
 
   getUsers(page: number = 1): void {
     if (page >= 1 && page <= this.totalPages && this.activePage !== page) {
@@ -33,6 +34,10 @@ export class ListUsersComponent implements OnInit, OnDestroy {
         this.loading = false;
       });
     }
+  }
+
+  updateUser(userId:number,firstName:string,lastName:string){
+    this.router.navigate(['/admin/users/update',userId,firstName,lastName])
   }
 
   deleteUser(userId: number) {
