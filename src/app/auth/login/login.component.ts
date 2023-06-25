@@ -29,7 +29,7 @@ export class LoginComponent {
 
   onSubmit(value :any) {
     this.email=value.email
-    this.password =value.passoword
+    this.password =value.password
     this.UsersService.loging(this.email,this.password)
   }
 

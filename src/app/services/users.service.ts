@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -44,7 +44,7 @@ export class UsersService {
       )
   }
   isLoggedIn():boolean{
-    let login = localStorage.getItem('login-key')
+    let login = localStorage.getItem('token')
     if(login){
       console.log(login)
       return true 
@@ -54,10 +54,19 @@ export class UsersService {
   }
 
   loging(email:string,password:string){
-    this.http.post(`${environment.apiLink}/users`,[email,password],{observe:'response'}).subscribe(
+    const login ={
+      email:email,
+      password : password
+    }
+    this.http.post(`${environment.apiLink}/login`,login,{observe:'response'}).subscribe(
       ()=>{
-        localStorage.setItem("login-key",(Math.random() + 1).toString(20).substring(2))
+        localStorage.setItem("token",(Math.random() + 1).toString(20).substring(2))
         this.router.navigate(['/admin'])
+      },
+      (error:HttpErrorResponse)=>{
+        console.log(error)
+        alert('email or password is incorrect')
+
       }
     )
   }
