@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesLayoutComponent } from '../layouts/pages-layout/pages-layout.component';
 import { HomeComponent } from './home/home.component';
 import { ForgetPasswordComponent } from '../auth/forget-password/forget-password.component';
+import { onlyLoggedInUsersGuardGuard } from '../guards/only-logged-in-users-guard.guard';
 
 const routes: Routes = [{
   path: "admin",
   component: PagesLayoutComponent,
+  canActivate:[onlyLoggedInUsersGuardGuard],
   children: [
     {
       path: "home",

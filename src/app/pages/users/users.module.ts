@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { UsersService } from 'src/app/services/users.service';
 
 
 @NgModule({
@@ -24,6 +25,10 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     TranslateModule,
     ReactiveFormsModule,
     NgbDropdownModule
+  ],
+  providers:[
+    
+    UsersService
   ]
 })
 export class UsersModule { }

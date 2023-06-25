@@ -5,6 +5,8 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
 import { UsersModule } from './users/users.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { FormsModule } from '@angular/forms';
+import { onlyLoggedInUsersGuardGuard } from '../guards/only-logged-in-users-guard.guard';
 
 
 @NgModule({
@@ -15,7 +17,12 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     PagesRoutingModule,
     UsersModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
+  ],
+  providers:[
+    
   ]
 })
 export class PagesModule { }
+   
